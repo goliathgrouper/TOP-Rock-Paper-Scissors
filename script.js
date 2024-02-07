@@ -46,6 +46,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+
+/*
 function game() {
     let count = 0;
     let round;
@@ -74,4 +76,26 @@ function game() {
         console.log('You lose ):');
     }
 }
+*/
 
+
+let compScore = 0;
+let playerScore = 0;
+
+const btns = document.querySelector('#container');
+const results = document.querySelector('#results');
+const score = document.querySelector('#score');
+
+
+btns.addEventListener('click', (event) => {
+    let playerChoice = event.target.textContent;
+    let computerChoice = getComputerChoice();
+    let round = playRound(playerChoice, computerChoice);
+    results.textContent = round;
+    if (round.charAt(4) === 'L') {
+        compScore++;
+    } else if (round.charAt(4) === 'w') {
+        playerScore++;
+    }
+    score.textContent = `Computer: ${compScore}; Player: ${playerScore}`;
+})
