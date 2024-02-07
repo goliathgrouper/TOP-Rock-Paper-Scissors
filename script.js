@@ -47,37 +47,6 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-/*
-function game() {
-    let count = 0;
-    let round;
-    let playersChoice;
-    let computersChoice;
-    let looses = 0;
-    let wins = 0;
-
-
-    playersChoice = prompt('What\'s your choice');
-    computersChoice = getComputerChoice();
-    round = playRound(playersChoice, computersChoice);
-    if (round.charAt(4) === 'L') {
-        looses++;
-        count++;
-    } else if (round.charAt(4) === 'w') {
-        wins++;
-        count++;
-    }
-    console.log(round);
-
-    console.log(`Result: ${wins} wins to ${looses} looses`);
-    if (wins > looses) {
-        console.log('You win!');
-    } else {
-        console.log('You lose ):');
-    }
-}
-*/
-
 
 let compScore = 0;
 let playerScore = 0;
@@ -86,8 +55,7 @@ const btns = document.querySelector('#container');
 const results = document.querySelector('#results');
 const score = document.querySelector('#score');
 
-
-btns.addEventListener('click', (event) => {
+function game(event) {
     let playerChoice = event.target.textContent;
     let computerChoice = getComputerChoice();
     let round = playRound(playerChoice, computerChoice);
@@ -98,4 +66,14 @@ btns.addEventListener('click', (event) => {
         playerScore++;
     }
     score.textContent = `Computer: ${compScore}; Player: ${playerScore}`;
-})
+    if (compScore >= 5 || playerScore >= 5) {
+        if (compScore > playerScore) {
+            results.textContent = 'You lost this war and now machines dominate humanity :(';
+        } else {
+            results.textContent = 'You won this war!! Humans are awesome AHAHA';
+        }
+        btns.removeEventListener('click', game);
+    }
+}
+
+btns.addEventListener('click', game);
