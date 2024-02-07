@@ -54,19 +54,19 @@ function game() {
     let looses = 0;
     let wins = 0;
 
-    while (count < 5) {
-        playersChoice = prompt('What\'s your choice');
-        computersChoice = getComputerChoice();
-        round = playRound(playersChoice, computersChoice);
-        if (round.charAt(4) === 'L') {
-            looses++;
-            count++;
-        } else if (round.charAt(4) === 'w') {
-            wins++;
-            count++;
-        }
-        console.log(round);
+
+    playersChoice = prompt('What\'s your choice');
+    computersChoice = getComputerChoice();
+    round = playRound(playersChoice, computersChoice);
+    if (round.charAt(4) === 'L') {
+        looses++;
+        count++;
+    } else if (round.charAt(4) === 'w') {
+        wins++;
+        count++;
     }
+    console.log(round);
+
     console.log(`Result: ${wins} wins to ${looses} looses`);
     if (wins > looses) {
         console.log('You win!');
@@ -75,4 +75,3 @@ function game() {
     }
 }
 
-alert('To use it type game(); in devtools console');
